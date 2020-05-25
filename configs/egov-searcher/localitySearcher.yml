@@ -25,7 +25,7 @@ SearchDefinitions:
       jsonFormat: {"ResponseInfo": {}}
       outJsonPath: $.Localities
       responseInfoPath: $.ResponseInfo
-      
+
   - name: sw-services
     query:
       baseQuery: |

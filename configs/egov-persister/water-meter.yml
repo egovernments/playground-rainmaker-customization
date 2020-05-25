@@ -15,16 +15,13 @@ serviceMaps:
        - jsonPath: $.meterReadings.connectionNo
 
        - jsonPath: $.meterReadings.billingPeriod
-       
+
        - jsonPath: $.meterReadings.meterStatus
 
        - jsonPath: $.meterReadings.lastReading
-       
+
        - jsonPath: $.meterReadings.lastReadingDate
 
        - jsonPath: $.meterReadings.currentReading
 
        - jsonPath: $.meterReadings.currentReadingDate
-
-      
- 

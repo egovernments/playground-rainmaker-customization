@@ -124,12 +124,12 @@
                 }
               },
               {
-                "variable": "variable13",                        
+                "variable": "variable13",
                 "value":{
-                     "path":"$.property.owners.*"                          
+                     "path":"$.property.owners.*"
                  },
                  "type":"array",
-                 "format":{                            
+                 "format":{
                   "type":"string",
                   "scema":[
                     {

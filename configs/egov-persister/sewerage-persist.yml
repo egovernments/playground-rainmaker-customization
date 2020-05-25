@@ -6,18 +6,18 @@ serviceMaps:
    description: create ConnectionDetails in connection and eg_sw_service
    fromTopic: save-sw-connection
    isTransaction: true
-   queryMaps: 
+   queryMaps:
     - query: INSERT INTO eg_sw_connection (id, tenantid, property_id, applicationno, applicationstatus, status, connectionno, oldconnectionno,roadcuttingarea,action,roadtype, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?);
       basePath: $.SewerageConnection
       jsonMaps:
-       - jsonPath: $.SewerageConnection.id 
-       
+       - jsonPath: $.SewerageConnection.id
+
        - jsonPath: $.SewerageConnection.property.tenantId
-       
+
        - jsonPath: $.SewerageConnection.propertyId
 
        - jsonPath: $.SewerageConnection.applicationNo
-        
+
        - jsonPath: $.SewerageConnection.applicationStatus
 
        - jsonPath: $.SewerageConnection.status
@@ -30,8 +30,8 @@ serviceMaps:
 
        - jsonPath: $.SewerageConnection.processInstance.action
 
-       - jsonPath: $.SewerageConnection.roadType 
-       
+       - jsonPath: $.SewerageConnection.roadType
+
        - jsonPath: $.SewerageConnection.auditDetails.createdBy
 
        - jsonPath: $.SewerageConnection.auditDetails.lastModifiedBy
@@ -49,28 +49,28 @@ serviceMaps:
        - jsonPath: $.SewerageConnection.connectionExecutionDate
 
        - jsonPath: $.SewerageConnection.noOfWaterClosets
-         
+
        - jsonPath: $.SewerageConnection.noOfToilets
-         
+
        - jsonPath: $.SewerageConnection.connectionType
-       
+
        - jsonPath: $.SewerageConnection.proposedWaterClosets
-       
+
        - jsonPath: $.SewerageConnection.proposedToilets
-       
+
        - jsonPath: $.SewerageConnection.additionalDetails.appCreatedDate
-         
+
 
  - version: 1.0
    name: SewerageConnection
    description: update ConnectionDetails in connection and eg_sw_service
    fromTopic: update-sw-connection
    isTransaction: true
-   queryMaps: 
+   queryMaps:
     - query: UPDATE eg_sw_connection SET applicationstatus=?, status=?, connectionno=?, oldconnectionno=?, action=?, roadCuttingArea=?, roadType=?, adhocpenalty=?, adhocrebate=?, adhocpenaltyreason=?, adhocpenaltycomment=?, adhocrebatereason=?, adhocrebatecomment=?, lastmodifiedby=?, lastmodifiedtime=? WHERE id=?;
       basePath: $.SewerageConnection
       jsonMaps:
-        
+
        - jsonPath: $.SewerageConnection.applicationStatus
 
        - jsonPath: $.SewerageConnection.status
@@ -84,24 +84,24 @@ serviceMaps:
        - jsonPath: $.SewerageConnection.roadCuttingArea
 
        - jsonPath: $.SewerageConnection.roadType
-       
-       - jsonPath: $.SewerageConnection.additionalDetails.adhocPenalty 
 
-       - jsonPath: $.SewerageConnection.additionalDetails.adhocRebate 
-       
-       - jsonPath: $.SewerageConnection.additionalDetails.adhocPenaltyReason 
+       - jsonPath: $.SewerageConnection.additionalDetails.adhocPenalty
+
+       - jsonPath: $.SewerageConnection.additionalDetails.adhocRebate
+
+       - jsonPath: $.SewerageConnection.additionalDetails.adhocPenaltyReason
 
        - jsonPath: $.SewerageConnection.additionalDetails.adhocPenaltyComment
-       
-       - jsonPath: $.SewerageConnection.additionalDetails.adhocRebateReason 
+
+       - jsonPath: $.SewerageConnection.additionalDetails.adhocRebateReason
 
        - jsonPath: $.SewerageConnection.additionalDetails.adhocRebateComment
-      
+
        - jsonPath: $.SewerageConnection.auditDetails.lastModifiedBy
 
        - jsonPath: $.SewerageConnection.auditDetails.lastModifiedTime
 
-       - jsonPath: $.SewerageConnection.id       
+       - jsonPath: $.SewerageConnection.id
 
     - query: UPDATE eg_sw_service SET connectionexecutiondate=?, noOfWaterClosets=?, noOfToilets=?, connectiontype=?, proposedWaterClosets=?, proposedToilets=?, detailsprovidedby = ?, estimationfileStoreId = ?, sanctionfileStoreId = ?  WHERE connection_id=?;
       basePath: $.SewerageConnection
@@ -110,28 +110,28 @@ serviceMaps:
        - jsonPath: $.SewerageConnection.connectionExecutionDate
 
        - jsonPath: $.SewerageConnection.noOfWaterClosets
-         
+
        - jsonPath: $.SewerageConnection.noOfToilets
-         
+
        - jsonPath: $.SewerageConnection.connectionType
-       
+
        - jsonPath: $.SewerageConnection.proposedWaterClosets
-       
+
        - jsonPath: $.SewerageConnection.proposedToilets
-       
-       - jsonPath: $.SewerageConnection.additionalDetails.detailsProvidedBy 
-       
+
+       - jsonPath: $.SewerageConnection.additionalDetails.detailsProvidedBy
+
        - jsonPath: $.SewerageConnection.additionalDetails.estimationFileStoreId
-       
+
        - jsonPath: $.SewerageConnection.additionalDetails.sanctionFileStoreId
-         
+
        - jsonPath: $.SewerageConnection.id
 
 
     - query: INSERT INTO eg_sw_applicationDocument(id, tenantId, documenttype, filestoreid, swid, active, createdBy, lastModifiedBy, createdTime, lastModifiedTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET active = ?, documenttype =?, filestoreid =?,lastmodifiedby =?, lastmodifiedtime =?;
       basePath: $.SewerageConnection.documents.*
       jsonMaps:
-         
+
           - jsonPath: $.SewerageConnection.documents.*.id
 
           - jsonPath: $.SewerageConnection.property.tenantId
@@ -161,11 +161,11 @@ serviceMaps:
           - jsonPath: $.SewerageConnection.documents.*.auditDetails.lastModifiedBy
 
           - jsonPath: $.SewerageConnection.documents.*.auditDetails.lastModifiedTime
-          
+
     - query: INSERT INTO eg_sw_plumberinfo(id, name, licenseno, mobilenumber, gender, fatherorhusbandname, correspondenceaddress, relationship, swid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET name =?, licenseno =?,mobilenumber =?, gender =?, fatherorhusbandname =?, correspondenceaddress =?, relationship=?;
       basePath: $.SewerageConnection.plumberInfo.*
       jsonMaps:
-         
+
           - jsonPath: $.SewerageConnection.plumberInfo.*.id
 
           - jsonPath: $.SewerageConnection.plumberInfo.*.name
@@ -181,9 +181,9 @@ serviceMaps:
           - jsonPath: $.SewerageConnection.plumberInfo.*.correspondenceAddress
 
           - jsonPath: $.SewerageConnection.plumberInfo.*.relationship
-          
-          - jsonPath: $.SewerageConnection.id           
-          
+
+          - jsonPath: $.SewerageConnection.id
+
           - jsonPath: $.SewerageConnection.plumberInfo.*.name
 
           - jsonPath: $.SewerageConnection.plumberInfo.*.licenseNo
@@ -196,9 +196,8 @@ serviceMaps:
 
           - jsonPath: $.SewerageConnection.plumberInfo.*.correspondenceAddress
 
-          - jsonPath: $.SewerageConnection.plumberInfo.*.relationship         
-          
-          
+          - jsonPath: $.SewerageConnection.plumberInfo.*.relationship
+
 
  - version: 1.0
    name: SewerageConnection
@@ -209,7 +208,7 @@ serviceMaps:
     - query: UPDATE eg_sw_connection SET applicationstatus=?, status=?, connectionno=?, action=?, lastModifiedBy=?, lastModifiedTime=? WHERE id=?;
       basePath: $.SewerageConnection
       jsonMaps:
-        
+
        - jsonPath: $.SewerageConnection.applicationStatus
 
        - jsonPath: $.SewerageConnection.status
@@ -217,19 +216,19 @@ serviceMaps:
        - jsonPath: $.SewerageConnection.connectionNo
 
        - jsonPath: $.SewerageConnection.processInstance.action
-       
+
        - jsonPath: $.SewerageConnection.auditDetails.lastModifiedBy
 
        - jsonPath: $.SewerageConnection.auditDetails.lastModifiedTime
-       
+
        - jsonPath: $.SewerageConnection.id
-       
+
  - version: 1.0
    name: SewerageConnection
    description: save filestore ids
    fromTopic: save-sw-filestoreids
    isTransaction: true
-   queryMaps: 
+   queryMaps:
     - query: UPDATE eg_sw_service SET estimationfileStoreId = ?, sanctionfileStoreId = ? WHERE connection_id=?;
       basePath: $.SewerageConnection
       jsonMaps:
@@ -238,4 +237,4 @@ serviceMaps:
 
         - jsonPath: $.SewerageConnection.additionalDetails.sanctionFileStoreId
 
-        - jsonPath: $.SewerageConnection.id      
+        - jsonPath: $.SewerageConnection.id
